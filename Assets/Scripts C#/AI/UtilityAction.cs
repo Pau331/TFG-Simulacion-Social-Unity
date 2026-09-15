@@ -27,6 +27,7 @@ public abstract class UtilityAction
                 // de la necesidad, nunca a la distancia u otras consideraciones.
                 if (c is INeedConsideration)
                     v = Mathf.Clamp01(v * personalityModifier);
+                    Debug.Log($"[Utility] Consideration={c.GetType().Name} Value={v:F2}");
 
                 float w = c.GetWeight();
                 sum += v * w;

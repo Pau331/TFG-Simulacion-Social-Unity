@@ -12,6 +12,10 @@ public class WatchTVAction : UtilityAction
     {
         if (!(target is TV)) return 0f;
 
+        var needs = GameManager.Instance.simNeeds;
+        if (needs != null && needs.fun >= 99f)
+            return 0f;
+
         var personality = agent.GetComponent<NPCPersonality>();
 
         float personalityModifier = 1f;

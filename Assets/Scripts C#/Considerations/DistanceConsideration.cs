@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DistanceConsideration : IConsideration
 {
-    [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private float maxDistance = 20f;
     public float Evaluate(GameObject agent, InteractableObject target)
     {
         if (target == null) return 0f;

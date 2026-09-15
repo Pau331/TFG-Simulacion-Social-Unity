@@ -9,17 +9,6 @@ public class PieChartUI : MonoBehaviour
     public Image toiletSlice;
     public Image tvSlice;
 
-    void Start()
-    {
-        Color defaultColor = Color.gray;
-
-        eatSlice.color = defaultColor;
-        sleepSlice.color = defaultColor;
-        showerSlice.color = defaultColor;
-        toiletSlice.color = defaultColor;
-        tvSlice.color = defaultColor;
-    }
-
 
     public void UpdateChart(float eat, float sleep, float shower, float toilet, float tv)
     {

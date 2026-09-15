@@ -13,6 +13,10 @@ public class UrinateAction : UtilityAction
     {
         if (!(target is Toilet)) return 0f;
 
+        var needs = GameManager.Instance.simNeeds;
+        if (needs != null && needs.bladder >= 99f)
+            return 0f;
+
         float score = EvaluateConsiderations(agent, 1f);
         Debug.Log($"[Utility] Action={GetActionName()} Target={(target!=null?target.name:"null")} Base={score:F2}");
         return score;

@@ -12,6 +12,10 @@ public class ShowerAction : UtilityAction
     {
         if (!(target is Shower)) return 0f;
 
+        var needs = GameManager.Instance.simNeeds;
+        if (needs != null && needs.hygiene >= 99f)
+            return 0f;
+
         var personality = agent.GetComponent<NPCPersonality>();
 
         float personalityModifier = 1f;
