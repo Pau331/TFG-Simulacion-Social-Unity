@@ -8,8 +8,8 @@ public class EnergyConsideration : INeedConsideration
         if (needs != null)
         {
             // Cuanta más energía tenga, menor será el valor de utilidad
-            float normalizedEnergy = (100 - needs.energy) / 100f;
-            return normalizedEnergy;
+            float deficit = (100 - needs.energy) / 100f;
+            return deficit * deficit;
         }
         return 0f;
     }

@@ -8,8 +8,8 @@ public class HygieneConsideration : INeedConsideration
         if (needs != null)
         {
             // Cuanto más sucio esté, mayor será el valor de utilidad
-            float normalizedHygiene = (100 - needs.hygiene) / 100f;
-            return normalizedHygiene;
+            float deficit = (100 - needs.hygiene) / 100f;
+            return deficit * deficit;
         }
         return 0f;
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DistanceConsideration : IConsideration
 {
+    [SerializeField] private float maxDistance = 10f;
     public float Evaluate(GameObject agent, InteractableObject target)
     {
         if (target == null) return 0f;
@@ -18,7 +19,8 @@ public class DistanceConsideration : IConsideration
             targetPosition
         );
 
-        return 1f / (1f + distance); // cercano -> cerca de 1, lejano -> cerca de 0
+        float normalizedDistance = Mathf.Clamp01(distance / maxDistance);
+        return 1f - normalizedDistance;
     }
 
     public float GetWeight()

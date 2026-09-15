@@ -8,8 +8,8 @@ public class HungerConsideration : INeedConsideration
         if (needs != null)
         {
             // Cuanto más hambre tenga, mayor será el valor de utilidad
-            float normalizedHunger = (100 - needs.hunger) / 100f;
-            return normalizedHunger;
+            float deficit = (100 - needs.hunger) / 100f;
+            return deficit * deficit;
         }
         return 0f;
     }

@@ -8,8 +8,8 @@ public class BladderConsideration : INeedConsideration
         if (needs != null)
         {
             // Cuanto más necesite ir al baño, mayor será el valor de utilidad
-            float normalizedBladder = (100 - needs.bladder) / 100f;
-            return normalizedBladder;
+            float deficit = (100 - needs.bladder) / 100f;
+            return deficit * deficit;
         }
         return 0f;
     }

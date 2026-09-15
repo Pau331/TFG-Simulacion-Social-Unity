@@ -8,15 +8,15 @@ public class FunConsideration : INeedConsideration
         if (needs != null)
         {
             // Cuanto más aburrido esté, mayor será el valor de utilidad
-            float normalizedFun = (100 - needs.fun) / 100f;
-            return normalizedFun;
+            float deficit = (100 - needs.fun) / 100f;
+            return deficit * deficit;
         }
         return 0f;
     }
 
     public float GetWeight()
     {
-        return 0.8f;
+        return 0.9f;
     }
 
     public string GetName()
