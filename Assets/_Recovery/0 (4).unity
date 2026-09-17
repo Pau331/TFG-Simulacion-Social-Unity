@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc75ea151a3bee45a2c7d0c97617302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatisticsManager
-  currentConfigLabel: Maniatica
+  currentConfigLabel: Glotona
   exportKey: 290
   eatCount: 0
   sleepCount: 0

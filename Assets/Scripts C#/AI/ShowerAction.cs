@@ -57,6 +57,10 @@ public class ShowerAction : UtilityAction
     {
         return (typeof(Shower));
     }
+    public override float GetNeedValue(CharacterNeeds needs)
+    {
+        return needs != null ? needs.hygiene : 0f;
+    }
 
     public override void Execute(GameObject agent)
     {

@@ -41,6 +41,11 @@ public class SleepAction : UtilityAction
         return (typeof(Bed));
     }
 
+    public override float GetNeedValue(CharacterNeeds needs)
+    {
+        return needs != null ? needs.energy : 0f;
+    }
+
     public override void Execute(GameObject agent)
     {
         var nav = agent.GetComponent<NavMeshAgent>();

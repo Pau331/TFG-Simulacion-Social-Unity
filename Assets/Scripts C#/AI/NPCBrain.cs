@@ -36,7 +36,7 @@ public class NPCBrain : MonoBehaviour
         eat.considerations.Add(new DistanceConsideration());
 
         var sleep = new SleepAction();
-        sleep.considerations.Add(new EnergyConsideration());    
+        sleep.considerations.Add(new EnergyConsideration());
         sleep.considerations.Add(new DistanceConsideration());
 
         var shower = new ShowerAction();
@@ -107,9 +107,12 @@ public class NPCBrain : MonoBehaviour
 
         if (bestAction != null)
         {
-            Debug.Log("BEST ACTION: " + bestAction.actionName+ " - " + bestTarget.name + " with score: " + bestScore);
+            Debug.Log("BEST ACTION: " + bestAction.actionName + " - " + bestTarget.name + " with score: " + bestScore);
             bestAction.target = bestTarget;
             currentAction = bestAction;
+
+            float levelAtDecision = bestAction.GetNeedValue(GameManager.Instance.simNeeds);
+            StatisticsManager.Instance.RegisterDecisionLevel(bestAction, levelAtDecision);
 
             // Determinar punto de llegada del objetivo
             Vector3 reachPoint = GetReachPoint(bestTarget);
@@ -131,7 +134,7 @@ public class NPCBrain : MonoBehaviour
             }
 
             isActing = true;
-            
+
             StartCoroutine(PerformAction(currentAction));
         }
     }
@@ -227,7 +230,7 @@ public class NPCBrain : MonoBehaviour
                 sitPoint = tv.SitPoint;
             }
 
-            // Si es en el sofá
+            // Si es en el Toilet
             if (action.target is Toilet toilet)
             {
                 sitPoint = toilet.SitPoint;
@@ -281,11 +284,10 @@ public class NPCBrain : MonoBehaviour
             progressUI.Show(true);
             progressUI.SetText(action.GetActionText());
         }
+        float levelAtStart = action.GetNeedValue(GameManager.Instance.simNeeds);
 
         while (elapsed < duration)
         {
-            
-
             elapsed += Time.deltaTime;
 
             if (progressUI != null)
@@ -297,8 +299,9 @@ public class NPCBrain : MonoBehaviour
         // Ejecutar la interacción si la acción ha terminado
         if (action.target != null && elapsed >= duration)
         {
-            action.target.Interact(gameObject);
             RegisterStatistics(action, duration);
+            action.target.Interact(gameObject);
+            StatisticsManager.Instance.RegisterLevel(action, levelAtStart);
         }
 
         // Terminar de sentarse
@@ -431,7 +434,7 @@ public class NPCBrain : MonoBehaviour
 
     IEnumerator InitPersonality()
     {
-        yield return null; 
+        yield return null;
 
         float baseSpeed = navAgent.speed;
 

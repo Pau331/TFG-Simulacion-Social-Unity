@@ -59,6 +59,11 @@ public class WatchTVAction : UtilityAction
         return (typeof(TV));
     }
 
+    public override float GetNeedValue(CharacterNeeds needs)
+    {
+        return needs != null ? needs.fun : 0f;
+    }
+
     public override void Execute(GameObject agent)
     {
         var nav = agent.GetComponent<NavMeshAgent>();

@@ -57,6 +57,11 @@ public class EatAction : UtilityAction
         return (typeof(Fridge));
     }
 
+    public override float GetNeedValue(CharacterNeeds needs)
+    {
+        return needs != null ? needs.hunger : 0f;
+    }
+
     public override void Execute(GameObject agent)
     {
         var nav = agent.GetComponent<NavMeshAgent>();

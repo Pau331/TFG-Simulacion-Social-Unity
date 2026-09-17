@@ -48,11 +48,13 @@ public class StatisticsUI : MonoBehaviour
     {
         if (StatisticsManager.Instance == null) return;
 
-        eatText.text = "Comer: " + StatisticsManager.Instance.eatCount;
-        sleepText.text = "Dormir: " + StatisticsManager.Instance.sleepCount;
-        showerText.text = "Ducha: " + StatisticsManager.Instance.showerCount;
-        toiletText.text = "Baño: " + StatisticsManager.Instance.toiletCount;
-        tvText.text = "TV: " + StatisticsManager.Instance.tvCount;
+        var stats = StatisticsManager.Instance;
+
+        eatText.text = $"Comer: {stats.eatCount} \n";
+        sleepText.text = $"Dormir: {stats.sleepCount} \n";
+        showerText.text = $"Ducha: {stats.showerCount} \n";
+        toiletText.text = $"Baño: {stats.toiletCount} \n";
+        tvText.text = $"TV: {stats.tvCount} \n";
 
         // Update the pie chart
         if (pieChart != null)
@@ -90,10 +92,10 @@ public class StatisticsUI : MonoBehaviour
                 break;
 
             case 3:
-                lineChart.SetData(StatisticsManager.Instance.funHistory, Color.orange);
+                lineChart.SetData(StatisticsManager.Instance.funHistory, new Color(1f, 0.5f, 0f)); // Orange
                 break;
             case 4:
-                lineChart.SetData(StatisticsManager.Instance.bladderHistory, Color.purple);
+                lineChart.SetData(StatisticsManager.Instance.bladderHistory, new Color(0.5f, 0f, 0.5f)); // Purple
                 break;
         }
     }

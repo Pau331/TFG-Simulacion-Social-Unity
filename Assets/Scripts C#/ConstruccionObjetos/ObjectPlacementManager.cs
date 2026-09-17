@@ -410,7 +410,7 @@ public class ObjectPlacementManager : MonoBehaviour
                 FindObjectsSortMode.None
             );
 
-        int highestNumber = 1;
+        int highestNumber = 0;
 
         foreach (GameObject obj in objects)
         {

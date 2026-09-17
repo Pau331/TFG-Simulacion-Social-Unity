@@ -46,4 +46,5 @@ public abstract class UtilityAction
     public abstract float GetDuration();
     public abstract string GetActionName();
     public abstract string GetActionText();
+    public abstract float GetNeedValue(CharacterNeeds needs);
 }
