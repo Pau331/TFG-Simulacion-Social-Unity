@@ -22,6 +22,8 @@ public class NPCBrain : MonoBehaviour
 
     private Vector3 lastNavMeshPosition; // distancia del último punto en el NavMesh
 
+    public InteractableObject CurrentTarget => isActing ? currentAction?.target : null;
+
     void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();

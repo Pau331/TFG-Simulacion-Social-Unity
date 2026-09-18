@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 2909812397430953272}
   - component: {fileID: 7937314120709581425}
   - component: {fileID: 4469151811757887625}
+  - component: {fileID: -8160659581074037385}
   m_Layer: 7
   m_Name: Retrete
   m_TagString: Untagged
@@ -276,7 +277,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.00275, y: 0.003, z: 0.011000001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.0005, y: 0, z: 0.001}
   m_TimeToStationary: 0.5
@@ -301,6 +302,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0055, y: 0.0050000004, z: 0.02184821}
   m_Center: {x: 0.0006743769, y: 0, z: 0.0011929704}
+--- !u!114 &-8160659581074037385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159232641650797104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d08cc478143604e962cf3e9fcb68f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RequiresZAxisRotation
 --- !u!1 &8794066478513365110
 GameObject:
   m_ObjectHideFlags: 0

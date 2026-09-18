@@ -1,10 +1,16 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.AI.Navigation;
 
 public class ObjectPlacementManager : MonoBehaviour
 {
-    
+    [Header("Navegación")]
+    public NavMeshSurface navMeshSurface;
+
+    [Header("Referencias")]
+    public NPCBrain npcBrain;
+
     [Header("Referencias")]
     public Camera mainCamera;
 
@@ -132,10 +138,18 @@ public class ObjectPlacementManager : MonoBehaviour
             if (current.gameObject.layer == placedLayer)
             {
                 GameObject objectToDelete = current.gameObject;
+                InteractableObject interactable = objectToDelete.GetComponent<InteractableObject>();
+
+                if (npcBrain != null && interactable != null && npcBrain.CurrentTarget == interactable)
+                {
+                    Debug.Log("No se puede eliminar: el personaje está usando este objeto (" + objectToDelete.name + ").");
+                    return;
+                }
 
                 Debug.Log("Objeto eliminado: " + objectToDelete.name);
 
                 Destroy(objectToDelete);
+                navMeshSurface.BuildNavMesh(); 
 
                 return;
             }
@@ -150,8 +164,14 @@ public class ObjectPlacementManager : MonoBehaviour
         {
             return;
         }
-
-        previewObject.transform.Rotate(Vector3.up, rotationAmount);
+        if (previewObject.GetComponent<RequiresZAxisRotation>() != null)
+        {
+            previewObject.transform.Rotate(Vector3.forward, rotationAmount);
+        }
+        else
+        {
+            previewObject.transform.Rotate(Vector3.up, rotationAmount);
+        }
 
         UpdatePreview();
     }
@@ -368,8 +388,10 @@ public class ObjectPlacementManager : MonoBehaviour
         selectedPrefab = null;
         isPlacing = false;
         canPlace = false;
-
         originalMaterials = null;
+        
+        //Recalcular navmesh
+        navMeshSurface.BuildNavMesh();
     }
 
 
